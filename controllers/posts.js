@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     });*/
     // new syntax w/o callback for mongoose 7 (march 2022)
     try {
-        const posts = await Post.find().sort('name');
+        const posts = await Post.find().sort({'date': -1});
         return res.json(posts).status(200);
     }
     catch (err) {
@@ -23,18 +23,10 @@ router.get('/', async (req, res) => {
 
 /* GET: /api/posts/5 */
 router.get('/:id', async (req, res) => {
-    /* callback syntax BEFORE mongoose 7 which is new
-    Post.find((err, posts) => {
-        if (err) {
-            res.json(err).status(400);
-        }
-        res.json(posts).status(200);
-    });*/
     // new syntax w/o callback for mongoose 7 (march 2022)
     try {
-        console.log(req.params.id);
         const post = await Post.find({ postId: req.params.id});
-        console.log(post);
+        //console.log(post);
         return res.json(post).status(200);
     }
     catch (err) {
