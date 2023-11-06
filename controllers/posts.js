@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // new syntax w/o callback for mongoose 7 (march 2022)
     try {
-        const post = await Post.find({ postId: req.params.id});
+        const post = await Post.find({ _id: req.params.id });
         //console.log(post);
         return res.json(post).status(200);
     }
